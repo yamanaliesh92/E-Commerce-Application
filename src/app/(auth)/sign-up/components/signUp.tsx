@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { useIntl } from "react-intl";
 import CustomInput from "@/components/custom/input";
+import CustomButton from "@/components/custom/button";
 
 export default function SignUp() {
   const { formatMessage } = useIntl();
