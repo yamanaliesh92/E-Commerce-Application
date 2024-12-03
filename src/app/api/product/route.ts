@@ -1,6 +1,15 @@
 import { db } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyToken } from "@/lib/auth";
+import { z } from "zod";
+
+// Define a schema for validation using zod
+const productSchema = z.object({
+  description: z.string().min(1),
+  name: z.string().min(1),
+  price: z.number().positive(),
+  imageUrl: z.string().url(),
+});
 
 export async function POST(req: NextRequest, res: NextResponse) {
   try {
@@ -11,17 +20,25 @@ export async function POST(req: NextRequest, res: NextResponse) {
     }
 
     const body = await req.json();
+    // Parse and validate the request body
+    const parsedBody = productSchema.parse(body);
+
     const save = await db.product.create({
       data: {
-        description: body.description,
-        name: body.name,
-        price: body.price,
-        imageUrl: body.imageUrl,
+        description: parsedBody.description,
+        name: parsedBody.name,
+        price: parsedBody.price,
+        imageUrl: parsedBody.imageUrl,
         userId: userId,
       },
     });
+
     return NextResponse.json(save);
   } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json({ message: error.errors }, { status: 400 });
+    }
+
     return NextResponse.json(
       { message: "Something went wrong" },
       { status: 500 }

@@ -73,12 +73,12 @@ const UserMenu: React.FC<UserMenuProps> = ({
           </div>
           <div className="group relative flex items-center">
             <Link
-              href="/product/create"
+              href="/create"
               className="text-blue-500 transition duration-300 dark:text-white"
               onClick={closeMenu}
             >
               <FaPlus size={24} />
-              <span className="hidden group-hover:block absolute dark:bg-white dark:text-black bg-black text-white text-xs rounded py-1 px-2 bottom-full mb-1">
+              <span className="hidden group-hover:block absolute  dark:bg-white dark:text-black bg-black text-white text-xs rounded py-1 px-2 bottom-full mb-1">
                 {formatMessage({ id: "navbar.createProduct" })}
               </span>
             </Link>
