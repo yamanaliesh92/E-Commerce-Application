@@ -8,16 +8,18 @@ import axios from "axios";
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useIntl } from "react-intl";
 import { toast } from "react-hot-toast";
+import { useIntl } from "react-intl";
 import CustomInput from "@/components/custom/input";
-import CustomButton from "@/components/custom/button";
 
-export default function Login() {
+export default function SignUp() {
   const { formatMessage } = useIntl();
 
-  const loginSchema = zod.object({
+  const signUpSchema = zod.object({
     email: zod.string().email(formatMessage({ id: "validation.invalidEmail" })),
+    username: zod
+      .string()
+      .min(1, formatMessage({ id: "validation.usernameRequired" })),
     password: zod
       .string()
       .min(6, formatMessage({ id: "validation.passwordMinLength" })),
@@ -28,24 +30,24 @@ export default function Login() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<zod.infer<typeof loginSchema>>({
-    resolver: zodResolver(loginSchema),
+    formState: { errors, isValid, isSubmitting },
+  } = useForm<zod.infer<typeof signUpSchema>>({
+    resolver: zodResolver(signUpSchema),
   });
 
-  const onSubmit = async (data: zod.infer<typeof loginSchema>) => {
+  const onSubmit = async (data: zod.infer<typeof signUpSchema>) => {
     try {
       setIsLoading(true);
-      await axios.post("/api/user/login", data);
+      await axios.post("/api/user", data);
       setIsLoading(false);
-      router.push("/");
-      toast.success(formatMessage({ id: "user.createdSuccess" }));
+      router.push("/login");
     } catch (error) {
       toast.error(formatMessage({ id: "productForm.unknownError" }));
     } finally {
       setIsLoading(false);
     }
   };
+
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -54,13 +56,21 @@ export default function Login() {
 
   return (
     <div className="bg-gray-100 dark:bg-gray-700 p-6 rounded-lg shadow-lg w-full max-w-md">
-      <h2 className="text-2xl font-bold mb-5 text-primary">
-        {formatMessage({ id: "login.signInButton" })}
+      <h2 className="text-2xl font-bold mb-5 dark:text-white text-primary">
+        {formatMessage({ id: "signUp.signUpButton" })}
       </h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <CustomInput
-            label={formatMessage({ id: "login.emailLabel" })}
+            label={formatMessage({ id: "signUp.usernameLabel" })}
+            {...register("username")}
+            error={errors.username?.message}
+          />
+        </div>
+
+        <div className="mb-4">
+          <CustomInput
+            label={formatMessage({ id: "signUp.emailLabel" })}
             {...register("email")}
             error={errors.email?.message}
           />
@@ -68,7 +78,7 @@ export default function Login() {
 
         <div className="mb-4 relative">
           <CustomInput
-            label={formatMessage({ id: "login.passwordLabel" })}
+            label={formatMessage({ id: "signUp.passwordLabel" })}
             {...register("password")}
             error={errors.password?.message}
             type={showPassword ? "text" : "password"}
@@ -91,16 +101,16 @@ export default function Login() {
         </div>
 
         <CustomButton isLoading={isLoading} type="submit">
-          {formatMessage({ id: "login.signInButton" })}
+          {formatMessage({ id: "signUp.signUpButton" })}
         </CustomButton>
       </form>
-      <p className="text-sm text-center mt-4 dark:text-white text-gray-600">
-        {formatMessage({ id: "login.dontHaveAccount" })}{" "}
+      <p className="mt-4 text-sm text-center dark:text-white text-gray-700">
+        {formatMessage({ id: "signUp.alreadyHaveAccount" })}
         <Link
-          href={"/sign-up"}
-          className="text-primary dark:text-secondary ms-2"
+          href={"/login"}
+          className="text-primary dark:text-secondary ms-2 hover:underline"
         >
-          {formatMessage({ id: "login.signUpLink" })}
+          {formatMessage({ id: "signUp.loginLink" })}
         </Link>
       </p>
     </div>
