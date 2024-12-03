@@ -6,7 +6,9 @@ import { BsMoon, BsSun } from "react-icons/bs";
 import { toggleTheme } from "@/redux/theme";
 
 export default function ThemeSwitch() {
-  const theme = useSelector((state: any) => state.theme.theme);
+  const theme = useSelector<{ theme: { theme: string } }>(
+    (state) => state.theme.theme
+  );
   const dispatch = useDispatch();
 
   return (

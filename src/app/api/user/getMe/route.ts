@@ -12,9 +12,9 @@ export async function GET(req: NextRequest, res: NextResponse) {
 
   try {
     const decoded = jwt.verify(
-      token.value as any,
+      token.value as string,
       process.env.JWT_SECRET_KEY!
-    ) as any;
+    ) as { id: number };
 
     const user = await db.user.findUnique({
       where: { id: decoded.id },

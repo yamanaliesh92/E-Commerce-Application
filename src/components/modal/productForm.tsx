@@ -15,10 +15,11 @@ import useFetchUser from "@/hooks/useFetchUser";
 import CustomInput from "../custom/input";
 import ImageUpload from "../imageUpload";
 import Button from "../custom/button";
+import { Product } from "@/lib/type";
 
 interface IProductForm {
   type: "update" | "create";
-  data?: any;
+  data?: Product;
   setOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -67,7 +68,7 @@ export const ProductForm = ({ type, data, setOpen }: IProductForm) => {
         router.push("/");
       } else {
         setIsLoading(true);
-        await axios.patch(`/api/product/${data.id}`, formData);
+        await axios.patch(`/api/product/${data?.id}`, formData);
         toast.success(formatMessage({ id: "productForm.productUpdated" }));
         setIsLoading(false);
         router.refresh();
@@ -85,10 +86,10 @@ export const ProductForm = ({ type, data, setOpen }: IProductForm) => {
 
   const isChanged =
     type === "update" &&
-    (currentValue.name !== data.name ||
-      currentValue.price !== data.price ||
-      currentValue.description !== data.description! ||
-      currentValue.imageUrl !== data.imageUrl);
+    (currentValue.name !== data?.name ||
+      currentValue.price !== data?.price ||
+      currentValue.description !== data?.description! ||
+      currentValue.imageUrl !== data?.imageUrl);
 
   const disabled = type === "create" ? !isValid : !isValid || !isChanged;
 
@@ -138,7 +139,7 @@ export const ProductForm = ({ type, data, setOpen }: IProductForm) => {
             control={control}
             render={({ field }) => (
               <ImageUpload
-                value={field.value as any}
+                value={field.value}
                 onChange={field.onChange}
                 onRemove={() => field.onChange("")}
                 disabled={false}

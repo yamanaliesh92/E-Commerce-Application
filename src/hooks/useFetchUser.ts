@@ -1,12 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
-type User = {
-  id: number;
-  email: string;
-  username: string;
-  createdAt: Date;
-};
+import { User } from "@/lib/type";
 
 const useFetchUser = () => {
   const [user, setUser] = useState<User | null>(null);
