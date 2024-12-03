@@ -1,14 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
-import CartPage from "./cart";
-
-import ThemeSwitch from "./ThemeSwitch";
-import { useIntl } from "react-intl";
-import LanguageSwitcher from "./switch";
 import useFetchUser from "@/hooks/useFetchUser";
 import axios from "axios";
-import UserMenu from "./UserMenu";
 import BurgerMenu from "./burgerMenu";
+import { useIntl } from "react-intl";
+import LanguageSwitcher from "../switchLang";
+import ThemeSwitch from "../ThemeSwitch";
+import UserMenu from "./userMenu";
+import Cart from "../cart";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -84,7 +83,7 @@ const Navbar: React.FC = () => {
         </div>
       )}
 
-      {open && <CartPage setOpen={setOpen} />}
+      {open && <Cart setOpen={setOpen} />}
     </>
   );
 };

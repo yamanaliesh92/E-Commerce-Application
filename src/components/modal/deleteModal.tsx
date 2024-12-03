@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useIntl } from "react-intl";
-import Button from "./button";
+import Button from "../custom/button";
 
 export default function DeleteModal({
   setOpen,

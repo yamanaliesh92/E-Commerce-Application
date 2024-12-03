@@ -6,10 +6,10 @@ import { useDispatch } from "react-redux";
 import Image from "next/image";
 import { useIntl } from "react-intl";
 
-import DeleteModal from "./deleteModal";
-import { ProductForm } from "./create";
 import useFetchUser from "@/hooks/useFetchUser";
 import toast from "react-hot-toast";
+import { ProductForm } from "./modal/productForm";
+import DeleteModal from "./modal/deleteModal";
 
 interface ProductCardProps {
   product: {

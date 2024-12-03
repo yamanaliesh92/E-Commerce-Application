@@ -4,10 +4,10 @@ import { Dispatch, SetStateAction, FC } from "react";
 import { FaTrash, FaPlus, FaMinus, FaTimes } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import { IResponseCart, removeFromCart, updateQuantity } from "@/redux/cart";
-import Button from "./button";
 import Image from "next/image";
 import { useIntl } from "react-intl";
 import axios from "axios";
+import Button from "./custom/button";
 
 interface IProps {
   setOpen: Dispatch<SetStateAction<boolean>>;

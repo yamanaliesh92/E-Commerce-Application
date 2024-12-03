@@ -1,8 +1,8 @@
 "use client";
-import ThemeInitializer from "@/components/themeInitializer";
-import { useEffect } from "react";
+
+import store from "@/redux/store";
+import ThemeInitializer from "@/redux/themeInitializer";
 import { Provider } from "react-redux";
-import store from "./store";
 
 const ReduxProviders = ({ children }: { children: React.ReactNode }) => {
   return (

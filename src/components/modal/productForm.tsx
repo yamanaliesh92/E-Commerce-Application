@@ -5,14 +5,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axios from "axios";
 import { useIntl } from "react-intl";
-import CustomInput from "./input";
-import ImageUpload from "./ImageUpload";
+
 import { FaTimes } from "react-icons/fa";
-import Button from "./button";
+
 import Link from "next/link";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import useFetchUser from "@/hooks/useFetchUser";
+import CustomInput from "../custom/input";
+import ImageUpload from "../imageUpload";
+import Button from "../custom/button";
 
 interface IProductForm {
   type: "update" | "create";

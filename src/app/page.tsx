@@ -1,5 +1,5 @@
 import NoProductsFound from "@/components/noProductFound";
-import ProductCard from "@/components/product-card";
+import ProductCard from "@/components/productCard";
 import Search from "@/components/search";
 import { db } from "@/lib/db";
 
@@ -29,7 +29,7 @@ export default async function Home({ searchParams }: HomeProps) {
       <Search />
       {products.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((item) => (
+          {products.map((item: any) => (
             <ProductCard key={item.id} product={item} />
           ))}
         </div>

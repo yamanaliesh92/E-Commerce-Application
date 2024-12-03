@@ -1,11 +1,11 @@
-import Navbar from "@/components/navbar";
-import NextIntlProvider from "@/components/nextIntlProvider";
-import Providers from "@/redux/provider";
 import type { Metadata } from "next";
 import "./globals.css";
 import { cookies } from "next/headers";
+import NextIntlProvider from "@/provider/nextIntlProvider";
+import ReduxProviders from "@/provider/ReduxProviders";
+import { ToastProvider } from "@/provider/toastProvider";
+import Navbar from "@/components/layout/navbar";
 import ThemeSwitch from "@/components/ThemeSwitch";
-import { ToastProvider } from "@/components/toast-provider";
 
 export default async function RootLayout({
   children,
@@ -20,12 +20,12 @@ export default async function RootLayout({
     <html dir={dir} lang={locale}>
       <body>
         <NextIntlProvider>
-          <Providers>
+          <ReduxProviders>
             <Navbar />
             <ThemeSwitch />
             <ToastProvider />
             <div className="mt-[64px] bg-white dark:bg-black">{children}</div>
-          </Providers>
+          </ReduxProviders>
         </NextIntlProvider>
       </body>
     </html>

@@ -1,10 +1,10 @@
 "use client";
 
+import { useDebounce } from "@/hooks/useDebunce";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useIntl } from "react-intl";
-import { useDebounce } from "./useDebunce";
 
 export default function SearchInput() {
   const { formatMessage } = useIntl();
