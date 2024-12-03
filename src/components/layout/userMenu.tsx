@@ -32,14 +32,14 @@ const UserMenu: React.FC<UserMenuProps> = ({
       {!user ? (
         <>
           <Link
-            className="bg-transparent rounded-md border text-blue-500 border-yellow-400 ps-4 pe-4 py-2 transition duration-300 hover:bg-yellow-400 hover:text-black"
+            className="bg-transparent rounded-md border dark:text-primary text-blue-500 border-yellow-400 ps-4 pe-4 py-2 transition duration-300 hover:bg-yellow-400 hover:text-black"
             href="/sign-up"
             onClick={closeMenu}
           >
             {formatMessage({ id: "navbar.signUp" })}
           </Link>
           <Link
-            className="rounded-md text-white bg-yellow-400 ps-4 pe-4 py-2 transition duration-300 hover:bg-yellow-500 hover:text-black"
+            className="rounded-md text-white bg-yellow-400 dark:bg-white dark:text-primary ps-4 pe-4 py-2 transition duration-300 hover:bg-yellow-500 hover:text-black"
             href="/login"
             onClick={closeMenu}
           >
