@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import jwt from "jsonwebtoken";
+import { jwtVerify } from "jose";
 
 // Middleware function
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   console.log("++++++++", req);
   const { pathname, searchParams } = req.nextUrl;
 
@@ -19,7 +19,12 @@ export function middleware(req: NextRequest) {
     const token = tokenCookie.value;
 
     try {
-      jwt.verify(token, process.env.JWT_SECRET_KEY!);
+      // Use jose library to verify the token
+      const { payload } = await jwtVerify(
+        token,
+        new TextEncoder().encode(process.env.JWT_SECRET_KEY)
+      );
+      console.log("Token payload:", payload);
     } catch (error) {
       console.error("Token verification failed:", error);
       return NextResponse.redirect(new URL("/login", req.url));

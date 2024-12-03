@@ -21,7 +21,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   return (
     <button
       className={`py-2 ps-4 pe-4 disabled:cursor-not-allowed cursor-pointer text-white font-bold rounded-md hover:bg-opacity-80 focus:outline-none ${bgColor} ${width} ${
-        disabled ? "bg-gray-500" : bgColor
+        disabled ? "dark:bg-gray-500 bg-gray-400" : bgColor
       }`}
       disabled={disabled || isLoading}
       {...props}

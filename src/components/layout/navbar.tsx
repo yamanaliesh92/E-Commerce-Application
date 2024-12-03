@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
       <header
         className={`p-4 h-16 fixed top-0 w-full bg-white dark:bg-black ${
           scrolling ? "border-b dark:border-b-black shadow-md" : ""
-        } transition-all duration-300 z-50`}
+        } transition-all duration-300 z-10 `}
       >
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center">

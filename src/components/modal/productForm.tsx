@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import axios from "axios";
@@ -50,7 +50,7 @@ export const ProductForm = ({ type, data, setOpen }: IProductForm) => {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<ProductFormInputs>({
     resolver: zodResolver(productSchema),
     defaultValues: data,
@@ -81,8 +81,19 @@ export const ProductForm = ({ type, data, setOpen }: IProductForm) => {
     }
   };
 
+  const currentValue = useWatch({ control });
+
+  const isChanged =
+    type === "update" &&
+    (currentValue.name !== data.name ||
+      currentValue.price !== data.price ||
+      currentValue.description !== data.description! ||
+      currentValue.imageUrl !== data.imageUrl);
+
+  const disabled = type === "create" ? !isValid : !isValid || !isChanged;
+
   return (
-    <div className="flex items-center justify-center z-[100] h-[100vh] fixed inset-0 w-full bg-black bg-opacity-50">
+    <div className="flex items-center justify-center z-[999] h-[100vh] fixed inset-0 w-full bg-black bg-opacity-50">
       <div className="p-6 w-[500px] bg-white dark:bg-gray-700 rounded-lg shadow-md">
         <div className="flex justify-between mb-3">
           <h2 className="text-2xl dark:text-white font-bold">{title}</h2>
@@ -138,7 +149,7 @@ export const ProductForm = ({ type, data, setOpen }: IProductForm) => {
             <p className="text-red-500">{errors.imageUrl.message}</p>
           )}
 
-          <Button isLoading={isLoading} type="submit">
+          <Button disabled={disabled} isLoading={isLoading} type="submit">
             {title}
           </Button>
         </form>
