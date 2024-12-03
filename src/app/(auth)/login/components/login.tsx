@@ -39,6 +39,7 @@ export default function Login() {
       await axios.post("/api/user/login", data);
       setIsLoading(false);
       router.push("/");
+      router.refresh();
       toast.success(formatMessage({ id: "user.createdSuccess" }));
     } catch (error) {
       toast.error(formatMessage({ id: "productForm.unknownError" }));
