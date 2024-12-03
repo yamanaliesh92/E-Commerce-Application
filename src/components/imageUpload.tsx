@@ -1,5 +1,5 @@
 "use client";
-import { ImagePlus, Trash } from "lucide-react";
+import { FaTrash, FaPlus } from "react-icons/fa";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { CldUploadWidget } from "next-cloudinary";
@@ -46,7 +46,7 @@ export default function ImageUpload({
               onClick={onClick}
               className="bg-gray-700 dark:bg-white dark:text-black text-white ps-4 pe-4 py-2 rounded-lg transition duration-300 flex items-center gap-2"
             >
-              <ImagePlus className="w-4 h-4" />
+              <FaPlus className="w-4 h-4" />
               {formatMessage({ id: "imageUpload.uploadImage" })}
             </button>
           );
@@ -62,7 +62,7 @@ export default function ImageUpload({
                 onClick={onRemove}
                 className="bg-red-500 p-1 rounded-full"
               >
-                <Trash className="h-4 w-4" />
+                <FaTrash className="h-4 w-4" />
               </button>
             </div>
             <Image
