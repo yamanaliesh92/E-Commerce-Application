@@ -8,11 +8,16 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Inter", "sans-serif"],
+      },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: "#1D4ED8",
+        secondary: "#FCA5A5",
+        destructive: "#FF6347",
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-rtl")],
+  darkMode: "class",
 } satisfies Config;
