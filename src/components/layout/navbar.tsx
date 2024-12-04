@@ -8,6 +8,7 @@ import LanguageSwitcher from "../switchLang";
 import ThemeSwitch from "../ThemeSwitch";
 import UserMenu from "./userMenu";
 import Cart from "../cart";
+import { toast } from "react-hot-toast";
 
 const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -30,10 +31,11 @@ const Navbar: React.FC = () => {
   const onSubmit = async () => {
     try {
       await axios.post("/api/user/logout");
-      alert(formatMessage({ id: "navbar.logout" }));
+
+      toast.success(formatMessage({ id: "navbar.logout" }));
     } catch (err) {
       console.error("Error logging out", err);
-      alert("An error occurred while logging out");
+      toast.error(formatMessage({ id: "productForm.unknownError" }));
     }
   };
 
