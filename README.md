@@ -8,7 +8,7 @@ First, setup the development environment
 docker compose up apidb
 ```
 
-First, run the development server:
+Then, run the development server:
 
 ```bash
 npm run dev
