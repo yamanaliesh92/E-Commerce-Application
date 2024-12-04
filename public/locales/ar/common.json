@@ -60,5 +60,8 @@
   "login.signUpLink": "إنشاء حساب",
   "user.createdSuccess": "تم إنشاء المستخدم بنجاح",
   "noProductsFound.title": "لم يتم العثور على منتجات",
-  "noProductsFound.message": "حاول تعديل بحثك أو تصفح فئاتنا."
+  "noProductsFound.message": "حاول تعديل بحثك أو تصفح فئاتنا.",
+  "notFound": "٤٠٤ - الصفحة غير موجودة",
+  "notFoundMessage": "عذرًا! الصفحة التي تبحث عنها غير موجودة.",
+  "backToHome": "العودة إلى الصفحة الرئيسية"
 }

@@ -60,5 +60,8 @@
   "login.signUpLink": "Sign Up",
   "user.createdSuccess": "User created successfully",
   "noProductsFound.title": "No products found",
-  "noProductsFound.message": "Try adjusting your search or browse our categories."
+  "noProductsFound.message": "Try adjusting your search or browse our categories.",
+  "notFound": "404 - Page Not Found",
+  "notFoundMessage": "Oops! The page you're looking for doesn't exist.",
+  "backToHome": "Back to Home"
 }

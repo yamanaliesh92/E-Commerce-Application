@@ -12,7 +12,7 @@ interface HomeProps {
 
 export default async function Home(props: HomeProps) {
   const searchParams = await props.searchParams;
-  const title = (await searchParams.title) || "";
+  const title = searchParams.title || "";
 
   const products = await db.product.findMany({
     where: title
