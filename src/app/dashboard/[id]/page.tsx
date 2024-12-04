@@ -4,7 +4,8 @@ import ProductCard from "@/components/productCard";
 import { db } from "@/lib/db";
 import { Product } from "@/lib/type";
 
-export default async function HomePage({ params }: { params: { id: number } }) {
+export default async function HomePage(props: { params: Promise<{ id: number }> }) {
+  const params = await props.params;
   const userId = Number(params.id);
 
   const [products, count] = await db.$transaction([

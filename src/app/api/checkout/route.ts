@@ -29,7 +29,7 @@ export async function POST(
 
     const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
-    products.forEach((product: any) => {
+    products.forEach((product) => {
       line_items.push({
         quantity: 1,
         price_data: {

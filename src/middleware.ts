@@ -4,7 +4,6 @@ import { jwtVerify } from "jose";
 
 // Middleware function
 export async function middleware(req: NextRequest) {
-  console.log("++++++++", req);
   const { pathname, searchParams } = req.nextUrl;
 
   const protectedRoutes = ["/create", "/dashboard/:path*"];

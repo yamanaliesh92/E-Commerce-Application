@@ -5,12 +5,13 @@ import { db } from "@/lib/db";
 import { Product } from "@/lib/type";
 
 interface HomeProps {
-  searchParams: {
+  searchParams: Promise<{
     title?: string;
-  };
+  }>;
 }
 
-export default async function Home({ searchParams }: HomeProps) {
+export default async function Home(props: HomeProps) {
+  const searchParams = await props.searchParams;
   const title = (await searchParams.title) || "";
 
   const products = await db.product.findMany({
