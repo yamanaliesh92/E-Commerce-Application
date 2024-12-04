@@ -7,6 +7,10 @@ import { ToastProvider } from "@/provider/toastProvider";
 import Navbar from "@/components/layout/navbar";
 import ThemeSwitch from "@/components/ThemeSwitch";
 
+export const metadata: Metadata = {
+  title: "E-commerce App",
+};
+
 export default async function RootLayout({
   children,
 }: {
